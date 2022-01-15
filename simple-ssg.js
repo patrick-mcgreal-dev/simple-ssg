@@ -21,6 +21,13 @@ module.exports = {
             throw new Error('-- Directory [ ' + dir + ' ] does not exist --');
     
     },
+
+    tokenizeMarkdown: (srcDir) => {
+
+        let markdown = fs.readFileSync(srcDir, 'utf8');
+        return marked.lexer(markdown);
+
+    },
     
     parseMarkdown: (srcDir) => {
     

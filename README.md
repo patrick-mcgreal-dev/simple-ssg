@@ -13,6 +13,8 @@ This module provides a few simple utility functions for generating static sites.
 
 ### checkDirExists
 
+### tokenizeMarkdown
+
 ### parseMarkdown
 
 ### renderPage
