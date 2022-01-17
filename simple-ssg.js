@@ -6,12 +6,12 @@ const marked = require('marked');
 
 // prevent marked from adding id elements to headers
 // see here: https://github.com/treasonx/grunt-markdown/issues/54
-const renderer = new marked.Renderer();
-renderer.heading = (text, level) => { 
+const r = new marked.Renderer();
+r.heading = (text, level) => { 
     return `<h${level}>${text}</h${level}>\n`;
 };
 
-marked.use({ renderer });
+marked.use({ r });
 
 module.exports = {
 
@@ -29,7 +29,11 @@ module.exports = {
 
     },
     
-    parseMarkdown: (srcDir) => {
+    parseMarkdown: (srcDir, renderer) => {
+
+        if (renderer) {
+            marked.use({ renderer });
+        }
     
         let markdown = fs.readFileSync(srcDir, 'utf8');
         return marked.parse(markdown);
